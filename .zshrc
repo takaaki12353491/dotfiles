@@ -21,6 +21,9 @@ function removegomi () {
 }
 alias rmgomi=removegomi
 
+# grep
+export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+
 # direnv
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(direnv hook zsh)"
@@ -41,3 +44,4 @@ export PATH="/opt/homebrew/opt/mysql-client@8.0/bin:$PATH"
 
 # Remove unnecessary PATH entries
 typeset -U PATH
+export PATH=$(echo $PATH | tr ':' '\n' | while read path; do [ -d "$path" ] && echo -n "$path:"; done | sed 's/:$//')
