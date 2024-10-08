@@ -3,6 +3,9 @@ fpath+=($HOME/.zsh/pure)
 autoload -U promptinit; promptinit
 prompt pure
 
+# homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # git completion
 #fpath=(~/.zsh/completion $fpath)
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
@@ -18,14 +21,16 @@ function removegomi () {
 }
 alias rmgomi=removegomi
 
-# dienv
+# direnv
+export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(direnv hook zsh)"
 
+# anyenv
+eval "$(anyenv init -)"
+
 # go
+export GOPATH="$HOME/go"
 export PATH=$PATH:$(go env GOPATH)/bin
-export GOENV_ROOT=$HOME/.goenv
-export PATH=$GOENV_ROOT/bin:$PATH
-eval "$(goenv init -)"
 export PATH=$GOENV_ROOT/shims:$PATH
 
 # yarn
@@ -33,3 +38,6 @@ export PATH="$PATH:/path/to/yarn/bin"
 
 # mysql
 export PATH="/opt/homebrew/opt/mysql-client@8.0/bin:$PATH"
+
+# Remove unnecessary PATH entries
+typeset -U PATH
