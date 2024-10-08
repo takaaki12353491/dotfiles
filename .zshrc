@@ -26,7 +26,7 @@ export PATH=$PATH:$(go env GOPATH)/bin
 export GOENV_ROOT=$HOME/.goenv
 export PATH=$GOENV_ROOT/bin:$PATH
 eval "$(goenv init -)"
-export PATH=$GOENV_ROOT/shims:$PATH #通常のターミナルとVSCodeの参照先を合わせる
+export PATH=$GOENV_ROOT/shims:$PATH
 
 # yarn
 export PATH="$PATH:/path/to/yarn/bin"
